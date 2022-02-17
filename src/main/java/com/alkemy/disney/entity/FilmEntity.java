@@ -1,4 +1,4 @@
-package com.alkemy.disney.disney.entity;
+package com.alkemy.disney.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "films")
@@ -30,7 +31,11 @@ public class FilmEntity {
 
     private int rating;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinColumn(name = "genre_id")
     private GenreEntity genre;
 
@@ -43,6 +48,6 @@ public class FilmEntity {
             name = "film_character",
             joinColumns = {@JoinColumn(name = "film_id")},
             inverseJoinColumns = {@JoinColumn(name = "character_id")})
-    private Set<CharacterEntity> characters;
+    private List<CharacterEntity> characters = new ArrayList<>();
 
 }

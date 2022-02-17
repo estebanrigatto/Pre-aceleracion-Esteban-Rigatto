@@ -1,10 +1,11 @@
-package com.alkemy.disney.disney.entity;
+package com.alkemy.disney.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,12 @@ public class CharacterEntity {
 
     private String story;
 
-    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL)
-    private List<FilmEntity> films;
+    @ManyToMany(
+            mappedBy = "characters",
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    private List<FilmEntity> films = new ArrayList<>();
 
 }
