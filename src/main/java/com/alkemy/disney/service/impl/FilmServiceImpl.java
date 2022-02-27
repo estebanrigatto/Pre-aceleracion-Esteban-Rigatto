@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmServiceImpl implements FilmService {
@@ -36,15 +37,15 @@ public class FilmServiceImpl implements FilmService {
     }
 
     public FilmDTO getDetailsById(String id) {
-        FilmEntity entity = filmRepository.getById(id);
-        FilmDTO result = filmMapper.filmEntity2DTO(entity, true);
+        Optional<FilmEntity> entity = filmRepository.findById(id);
+        FilmDTO result = filmMapper.filmEntity2DTO(entity.get(), true);
         return result;
     }
 
-    public List<FilmDTO> getByFilters(String title, String genreId, String order) {
+    public List<FilmBasicDTO> getByFilters(String title, String genreId, String order) {
         FilmFiltersDTO filtersDTO = new FilmFiltersDTO(title, genreId, order);
         List<FilmEntity> entities = filmRepository.findAll(filmSpecification.getByFilters(filtersDTO));
-        List<FilmDTO> dtos = filmMapper.filmEntityList2DTOList(entities, true);
+        List<FilmBasicDTO> dtos = filmMapper.filmEntityList2BasicDTOList(entities);
         return dtos;
     }
 
@@ -56,14 +57,21 @@ public class FilmServiceImpl implements FilmService {
     }
 
     public FilmDTO update(String id, FilmDTO dto) {
-        FilmEntity film = filmRepository.getById(id);
-        FilmEntity entity = filmMapper.updateFilmDTO2Entity(film, dto);
+        Optional<FilmEntity> result = filmRepository.findById(id);
+        if (result.isPresent()) {
+        FilmEntity entity = filmMapper.updateFilmDTO2Entity(result.get(), dto);
         FilmEntity entityUpdated = filmRepository.save(entity);
-        FilmDTO result = filmMapper.filmEntity2DTO(entityUpdated, false);
-        return result;
+        FilmDTO dtoUpdated = filmMapper.filmEntity2DTO(entityUpdated, true);
+        return dtoUpdated;
+        } else {
+            return null;
+            //    throw new NotFoundException("Requested film was not found.");
+        }
     }
 
     public void delete(String id) {
+        //if (characterRepository.findById(id) == null)
+            //throw new NotFoundException("Requested character was not found");
         filmRepository.deleteById(id);
     }
 

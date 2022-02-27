@@ -3,11 +3,11 @@ package com.alkemy.disney.mapper;
 import com.alkemy.disney.dto.FilmBasicDTO;
 import com.alkemy.disney.dto.FilmDTO;
 import com.alkemy.disney.entity.FilmEntity;
+import com.alkemy.disney.entity.GenreEntity;
+import com.alkemy.disney.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +38,12 @@ public class FilmMapper {
         FilmEntity entity = new FilmEntity();
         entity.setPicture(dto.getPicture());
         entity.setTitle(dto.getTitle());
-        entity.setRelease(stringToLocalDate(dto.getRelease()));
+        entity.setRelease(Util.stringToLocalDate(dto.getRelease()));
         entity.setRating(dto.getRating());
+        GenreEntity genre = new GenreEntity();
+        genre.setId(dto.getGenre().getId());
+        entity.setGenre(genre);
+        entity.setCharacters(characterMapper.characterDTOList2EntityList(dto.getCharacters()));
         return entity;
     }
 
@@ -68,14 +72,12 @@ public class FilmMapper {
     public FilmEntity updateFilmDTO2Entity(FilmEntity entity, FilmDTO dto) {
         entity.setPicture(dto.getPicture());
         entity.setTitle(dto.getTitle());
-        entity.setRelease(stringToLocalDate(dto.getRelease()));
+        entity.setRelease(Util.stringToLocalDate(dto.getRelease()));
         entity.setRating(dto.getRating());
+        GenreEntity genre = new GenreEntity();
+        genre.setId(dto.getGenre().getId());
+        entity.setGenre(genre);
         return entity;
     }
 
-    public LocalDate stringToLocalDate(String stringDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(stringDate, formatter);
-        return date;
-    }
 }

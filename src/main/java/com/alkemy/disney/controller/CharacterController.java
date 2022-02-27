@@ -17,18 +17,6 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
 
-    @GetMapping
-    public ResponseEntity<List<CharacterBasicDTO>> getBasicDTOList() {
-        List<CharacterBasicDTO> charactersBasic = characterService.getBasicDTOList();
-        return ResponseEntity.ok().body(charactersBasic);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<CharacterDTO>> getAll() {
-        List<CharacterDTO> characters = characterService.getAllCharacters();
-        return ResponseEntity.ok().body(characters);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getDetailsById(@PathVariable String id) {
         CharacterDTO character = characterService.getDetailsById(id);
@@ -36,13 +24,13 @@ public class CharacterController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CharacterDTO>> getDetailsByFilters(
+    public ResponseEntity<List<CharacterBasicDTO>> getDetailsByFilters(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) int age,
             @RequestParam(required = false) int weight,
             @RequestParam(required = false) List<String> films
     ) {
-        List<CharacterDTO> characters = characterService.getByFilters(name, age, weight, films);
+        List<CharacterBasicDTO> characters = characterService.getByFilters(name, age, weight, films);
         return ResponseEntity.ok(characters);
     }
 

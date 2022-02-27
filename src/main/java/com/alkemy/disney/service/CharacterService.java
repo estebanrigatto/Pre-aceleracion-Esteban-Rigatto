@@ -13,7 +13,7 @@ public interface CharacterService {
 
     CharacterDTO getDetailsById(String id);
 
-    List<CharacterDTO> getByFilters(String name, int age, int weight, List<String> films);
+    List<CharacterBasicDTO> getByFilters(String name, int age, int weight, List<String> films);
 
     CharacterDTO save(CharacterDTO dto);
 

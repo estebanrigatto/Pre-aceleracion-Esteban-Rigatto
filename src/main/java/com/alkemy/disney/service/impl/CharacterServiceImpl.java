@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
@@ -36,15 +37,15 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     public CharacterDTO getDetailsById(String id) {
-        CharacterEntity entity = characterRepository.getById(id);
-        CharacterDTO result = characterMapper.characterEntity2DTO(entity, true);
+        Optional<CharacterEntity> entity = characterRepository.findById(id);
+        CharacterDTO result = characterMapper.characterEntity2DTO(entity.get(), false);
         return result;
     }
 
-    public List<CharacterDTO> getByFilters(String name, int age, int weight, List<String> films) {
+    public List<CharacterBasicDTO> getByFilters(String name, int age, int weight, List<String> films) {
         CharacterFiltersDTO filtersDTO = new CharacterFiltersDTO(name, age, weight, films);
         List<CharacterEntity> entities = characterRepository.findAll(characterSpecification.getByFilters(filtersDTO));
-        List<CharacterDTO> dtos = characterMapper.characterEntityList2DTOList(entities, true);
+        List<CharacterBasicDTO> dtos = characterMapper.characterEntityList2BasicDTOList(entities);
         return dtos;
     }
 
@@ -56,14 +57,21 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     public CharacterDTO update(String id, CharacterDTO dto) {
-        CharacterEntity character = characterRepository.getById(id);
-        CharacterEntity entity = characterMapper.updateCharacterDTO2Entity(character, dto);
+        Optional<CharacterEntity> result = characterRepository.findById(id);
+        if (result.isPresent()) {
+        CharacterEntity entity = characterMapper.updateCharacterDTO2Entity(result.get(), dto);
         CharacterEntity entityUpdated = characterRepository.save(entity);
-        CharacterDTO result = characterMapper.characterEntity2DTO(entityUpdated, false);
-        return result;
+        CharacterDTO dtoUpdated = characterMapper.characterEntity2DTO(entityUpdated, true);
+        return dtoUpdated;
+        } else {
+            return null;
+            //    throw new NotFoundException("Requested character was not found.");
+        }
     }
 
     public void delete(String id) {
+        //if (characterRepository.findById(id) == null)
+            //throw new NotFoundException("Requested character was not found");
         characterRepository.deleteById(id);
     }
 

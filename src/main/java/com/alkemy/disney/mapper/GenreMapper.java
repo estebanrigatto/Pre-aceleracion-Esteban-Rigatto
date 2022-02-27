@@ -22,4 +22,10 @@ public class GenreMapper {
         return dto;
     }
 
+    public GenreEntity updateGenreDTO2Entity(GenreEntity entity, GenreDTO dto) {
+        entity.setPicture(dto.getPicture());
+        entity.setName(dto.getName());
+        return entity;
+    }
+
 }

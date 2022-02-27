@@ -60,6 +60,14 @@ public class CharacterMapper {
         return dtos;
     }
 
+    public List<CharacterEntity> characterDTOList2EntityList(List<CharacterDTO> dtos) {
+        List<CharacterEntity> entities = new ArrayList<>();
+        for (CharacterDTO dto : dtos) {
+            entities.add(characterDTO2Entity(dto));
+        }
+        return entities;
+    }
+
     public CharacterEntity updateCharacterDTO2Entity(CharacterEntity entity, CharacterDTO dto) {
         entity.setName(dto.getName());
         entity.setPicture(dto.getPicture());

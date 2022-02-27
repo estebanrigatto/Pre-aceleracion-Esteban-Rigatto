@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "f1fe30b0-ccec-4300-b69f-75b97a6c3a5a",
+		"name": "Alkemy-Pre-aceleracion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Character",
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"picture\": \"/usr/tmp/img.jpg\",\r\n    \"name\": \"Mickey\",\r\n    \"age\": \"30\",\r\n    \"weight\": \"10\",\r\n    \"story\": \"dhgakljsdgjdf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Genre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"picture\": \"/usr/tmp/img1.jpg\",\r\n    \"name\": \"Adventure\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/genres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Film",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"picture\": \"/usr/tmp/img3.jpg\",\r\n    \"title\": \"Mickey and friends\",\r\n    \"release\": \"20/08/1950\",\r\n    \"rating\": \"5\",\r\n    \"genre\": {\r\n        \"id\": \"4189e114-994f-4e31-9b55-b43055b4ab80\"\r\n    },\r\n    \"characters\": [\r\n        {\r\n            \"picture\": \"/usr/tmp/img4.jpg\",\r\n            \"name\": \"Pluto\",\r\n            \"age\": \"30\",\r\n            \"weight\": \"20\",\r\n            \"story\": \"perro\"\r\n        },\r\n        {\r\n            \"picture\": \"/usr/tmp/img5.jpg\",\r\n            \"name\": \"Goofy\",\r\n            \"age\": \"40\",\r\n            \"weight\": \"25\",\r\n            \"story\": \"hgfghfj\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenreById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/genres/4189e114-994f-4e31-9b55-b43055b4ab80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						"4189e114-994f-4e31-9b55-b43055b4ab80"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CharacterById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters/7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

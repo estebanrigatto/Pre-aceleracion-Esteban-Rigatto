@@ -11,9 +11,11 @@ public interface FilmService {
 
     List<FilmDTO> getAllFilms();
 
-    FilmDTO save(FilmDTO dto);
-
     FilmDTO getDetailsById(String id);
+
+    List<FilmBasicDTO> getByFilters(String title, String genreId, String order);
+
+    FilmDTO save(FilmDTO dto);
 
     FilmDTO update(String id, FilmDTO dto);
 
