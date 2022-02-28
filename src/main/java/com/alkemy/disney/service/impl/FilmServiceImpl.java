@@ -4,6 +4,8 @@ import com.alkemy.disney.dto.FilmBasicDTO;
 import com.alkemy.disney.dto.FilmDTO;
 import com.alkemy.disney.dto.FilmFiltersDTO;
 import com.alkemy.disney.entity.FilmEntity;
+import com.alkemy.disney.exception.EntityNotFoundException;
+import com.alkemy.disney.exception.ExceptionEnum;
 import com.alkemy.disney.mapper.FilmMapper;
 import com.alkemy.disney.repository.FilmRepository;
 import com.alkemy.disney.repository.specifications.FilmSpecification;
@@ -38,8 +40,12 @@ public class FilmServiceImpl implements FilmService {
 
     public FilmDTO getDetailsById(String id) {
         Optional<FilmEntity> entity = filmRepository.findById(id);
-        FilmDTO result = filmMapper.filmEntity2DTO(entity.get(), true);
-        return result;
+        if (entity.isPresent()) {
+            FilmDTO result = filmMapper.filmEntity2DTO(entity.get(), true);
+            return result;
+        } else {
+            throw new EntityNotFoundException(ExceptionEnum.FILMNOTFOUND.getMessage());
+        }
     }
 
     public List<FilmBasicDTO> getByFilters(String title, String genreId, String order) {
@@ -64,14 +70,14 @@ public class FilmServiceImpl implements FilmService {
         FilmDTO dtoUpdated = filmMapper.filmEntity2DTO(entityUpdated, true);
         return dtoUpdated;
         } else {
-            return null;
-            //    throw new NotFoundException("Requested film was not found.");
+            throw new EntityNotFoundException(ExceptionEnum.FILMNOTFOUND.getMessage());
         }
     }
 
     public void delete(String id) {
-        //if (characterRepository.findById(id) == null)
-            //throw new NotFoundException("Requested character was not found");
+        if (filmRepository.findById(id) == null) {
+            throw new EntityNotFoundException(ExceptionEnum.FILMNOTFOUND.getMessage());
+        }
         filmRepository.deleteById(id);
     }
 

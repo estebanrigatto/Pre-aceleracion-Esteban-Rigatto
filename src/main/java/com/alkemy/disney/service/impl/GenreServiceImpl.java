@@ -2,6 +2,8 @@ package com.alkemy.disney.service.impl;
 
 import com.alkemy.disney.dto.GenreDTO;
 import com.alkemy.disney.entity.GenreEntity;
+import com.alkemy.disney.exception.EntityNotFoundException;
+import com.alkemy.disney.exception.ExceptionEnum;
 import com.alkemy.disney.mapper.GenreMapper;
 import com.alkemy.disney.repository.GenreRepository;
 import com.alkemy.disney.service.GenreService;
@@ -20,8 +22,12 @@ public class GenreServiceImpl implements GenreService {
 
     public GenreDTO getDetailsById(String id) {
         Optional<GenreEntity> entity = genreRepository.findById(id);
-        GenreDTO result = genreMapper.genreEntity2DTO(entity.get());
-        return result;
+        if (entity.isPresent()) {
+            GenreDTO result = genreMapper.genreEntity2DTO(entity.get());
+            return result;
+        } else {
+            throw new EntityNotFoundException(ExceptionEnum.GENRENOTFOUND.getMessage());
+        }
     }
 
     public GenreDTO save(GenreDTO dto) {
@@ -39,14 +45,14 @@ public class GenreServiceImpl implements GenreService {
             GenreDTO dtoUpdated = genreMapper.genreEntity2DTO(entityUpdated);
             return dtoUpdated;
         } else {
-            return null;
-        //    throw new NotFoundException("Requested genre was not found.");
+            throw new EntityNotFoundException(ExceptionEnum.GENRENOTFOUND.getMessage());
         }
     }
 
     public void delete(String id) {
-        //if (genreRepository.findById(id) == null)
-            //throw new NotFoundException("Requested genre was not found");
+        if (genreRepository.findById(id) == null) {
+            throw new EntityNotFoundException(ExceptionEnum.GENRENOTFOUND.getMessage());
+        }
         genreRepository.deleteById(id);
     }
 }

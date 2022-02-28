@@ -35,13 +35,9 @@ public class FilmEntity {
     @Column(name = "release_date")
     private LocalDate release;
 
-    private int rating;
+    private Integer rating;
 
-    @ManyToOne(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+    @ManyToOne
     @JoinColumn(name = "genre_id")
     private GenreEntity genre;
 

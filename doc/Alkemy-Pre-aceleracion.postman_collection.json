@@ -6,6 +6,64 @@
 	},
 	"item": [
 		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"esteban.rigatto@gmail.com\",\r\n    \"password\": \"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"esteban.rigatto@gmail.com\",\r\n    \"password\": \"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Character",
 			"protocolProfileBehavior": {
 				"followRedirects": true,
@@ -128,6 +186,137 @@
 					"path": [
 						"characters",
 						"7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilmById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTAxMTg4LCJpYXQiOjE2NDYwNjUxODh9.qe60oPWfzd2g0OVQhm25fLsldp0-5RWQf6gN2iW6tuA",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/movies/937b2d03-0fca-41d5-ab82-f4f5a1ca8c63",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"937b2d03-0fca-41d5-ab82-f4f5a1ca8c63"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CharactersByFilters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/characters?age=10&weight=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "10"
+						},
+						{
+							"key": "weight",
+							"value": "5"
+						},
+						{
+							"key": "films",
+							"value": "lion king",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilmsByFilters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CharacterUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"picture\": \"/usr/tmp/img6.jpg\",\r\n            \"name\": \"Mufasa\",\r\n            \"age\": \"20\",\r\n            \"weight\": \"25\",\r\n            \"story\": \"Simba's father\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters/6362de56-f211-4501-8a1e-e9f8dfb581f2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"6362de56-f211-4501-8a1e-e9f8dfb581f2"
 					]
 				}
 			},

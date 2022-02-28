@@ -30,9 +30,9 @@ public class CharacterEntity {
     @Column(name = "character_name")
     private String name;
 
-    private int age;
+    private Integer age;
 
-    private int weight;
+    private Integer weight;
 
     private String story;
 

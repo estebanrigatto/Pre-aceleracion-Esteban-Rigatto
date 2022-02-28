@@ -13,7 +13,7 @@ public class FilmDTO {
     private String picture;
     private String title;
     private String release;
-    private int rating;
+    private Integer rating;
     private GenreDTO genre;
     private List<CharacterDTO> characters;
 

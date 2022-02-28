@@ -46,8 +46,10 @@ public class CharacterMapper {
         dto.setWeight(entity.getWeight());
         dto.setStory(entity.getStory());
         if (loadFilms) {
-            List<FilmDTO> dtos = filmMapper.filmEntityList2DTOList(entity.getFilms(), false);
-            dto.setFilms(dtos);
+            if (!entity.getFilms().isEmpty()) {
+                List<FilmDTO> dtos = filmMapper.filmEntityList2DTOList(entity.getFilms(), false);
+                dto.setFilms(dtos);
+            }
         }
         return dto;
     }

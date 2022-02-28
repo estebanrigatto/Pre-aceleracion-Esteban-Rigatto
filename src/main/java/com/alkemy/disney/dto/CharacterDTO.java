@@ -12,8 +12,8 @@ public class CharacterDTO {
     private String id;
     private String picture;
     private String name;
-    private int age;
-    private int weight;
+    private Integer age;
+    private Integer weight;
     private String story;
     private List<FilmDTO> films;
 

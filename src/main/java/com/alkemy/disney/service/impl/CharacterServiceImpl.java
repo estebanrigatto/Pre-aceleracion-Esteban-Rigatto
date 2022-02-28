@@ -4,6 +4,8 @@ import com.alkemy.disney.dto.CharacterBasicDTO;
 import com.alkemy.disney.dto.CharacterDTO;
 import com.alkemy.disney.dto.CharacterFiltersDTO;
 import com.alkemy.disney.entity.CharacterEntity;
+import com.alkemy.disney.exception.EntityNotFoundException;
+import com.alkemy.disney.exception.ExceptionEnum;
 import com.alkemy.disney.mapper.CharacterMapper;
 import com.alkemy.disney.repository.CharacterRepository;
 import com.alkemy.disney.repository.specifications.CharacterSpecification;
@@ -38,11 +40,15 @@ public class CharacterServiceImpl implements CharacterService {
 
     public CharacterDTO getDetailsById(String id) {
         Optional<CharacterEntity> entity = characterRepository.findById(id);
-        CharacterDTO result = characterMapper.characterEntity2DTO(entity.get(), false);
-        return result;
+        if (entity.isPresent()) {
+            CharacterDTO result = characterMapper.characterEntity2DTO(entity.get(), true);
+            return result;
+        } else {
+            throw new EntityNotFoundException(ExceptionEnum.CHARACTERNOTFOUND.getMessage());
+        }
     }
 
-    public List<CharacterBasicDTO> getByFilters(String name, int age, int weight, List<String> films) {
+    public List<CharacterBasicDTO> getByFilters(String name, Integer age, Integer weight, List<String> films) {
         CharacterFiltersDTO filtersDTO = new CharacterFiltersDTO(name, age, weight, films);
         List<CharacterEntity> entities = characterRepository.findAll(characterSpecification.getByFilters(filtersDTO));
         List<CharacterBasicDTO> dtos = characterMapper.characterEntityList2BasicDTOList(entities);
@@ -59,19 +65,19 @@ public class CharacterServiceImpl implements CharacterService {
     public CharacterDTO update(String id, CharacterDTO dto) {
         Optional<CharacterEntity> result = characterRepository.findById(id);
         if (result.isPresent()) {
-        CharacterEntity entity = characterMapper.updateCharacterDTO2Entity(result.get(), dto);
-        CharacterEntity entityUpdated = characterRepository.save(entity);
-        CharacterDTO dtoUpdated = characterMapper.characterEntity2DTO(entityUpdated, true);
-        return dtoUpdated;
+            CharacterEntity entity = characterMapper.updateCharacterDTO2Entity(result.get(), dto);
+            CharacterEntity entityUpdated = characterRepository.save(entity);
+            CharacterDTO dtoUpdated = characterMapper.characterEntity2DTO(entityUpdated, true);
+            return dtoUpdated;
         } else {
-            return null;
-            //    throw new NotFoundException("Requested character was not found.");
+            throw new EntityNotFoundException(ExceptionEnum.CHARACTERNOTFOUND.getMessage());
         }
     }
 
     public void delete(String id) {
-        //if (characterRepository.findById(id) == null)
-            //throw new NotFoundException("Requested character was not found");
+        if (characterRepository.findById(id) == null) {
+            throw new EntityNotFoundException(ExceptionEnum.CHARACTERNOTFOUND.getMessage());
+        }
         characterRepository.deleteById(id);
     }
 

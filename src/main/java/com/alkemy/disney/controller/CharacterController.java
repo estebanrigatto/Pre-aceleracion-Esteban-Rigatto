@@ -26,8 +26,8 @@ public class CharacterController {
     @GetMapping
     public ResponseEntity<List<CharacterBasicDTO>> getDetailsByFilters(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) int age,
-            @RequestParam(required = false) int weight,
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) Integer weight,
             @RequestParam(required = false) List<String> films
     ) {
         List<CharacterBasicDTO> characters = characterService.getByFilters(name, age, weight, films);
