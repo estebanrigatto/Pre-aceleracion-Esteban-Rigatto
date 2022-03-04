@@ -71,7 +71,13 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDcwMjc1LCJpYXQiOjE2NDY0MzQyNzV9.-feSn5UZzPUzdwy8DfCowVytLgfBYmOEfIWDRVpBiE4",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"picture\": \"/usr/tmp/img.jpg\",\r\n    \"name\": \"Mickey\",\r\n    \"age\": \"30\",\r\n    \"weight\": \"10\",\r\n    \"story\": \"dhgakljsdgjdf\"\r\n}",
@@ -99,10 +105,16 @@
 			"name": "Genre",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDMwNjM2LCJpYXQiOjE2NDYzOTQ2MzZ9.E6CKcHWo2o4y1_kbzdmzUpSlJQuhLe_4HTpUQ42An-k",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"picture\": \"/usr/tmp/img1.jpg\",\r\n    \"name\": \"Adventure\"\r\n}",
+					"raw": "{\r\n    \"picture\": \"/usr/tmp/img11.jpg\",\r\n    \"name\": \"Comedy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,10 +139,16 @@
 			"name": "Film",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDQ5MDMyLCJpYXQiOjE2NDY0MTMwMzJ9.gXtW-8OSJKIu58-EMGXeh9wznOrRwVFtI_ecR7IRI7U",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"picture\": \"/usr/tmp/img3.jpg\",\r\n    \"title\": \"Mickey and friends\",\r\n    \"release\": \"20/08/1950\",\r\n    \"rating\": \"5\",\r\n    \"genre\": {\r\n        \"id\": \"4189e114-994f-4e31-9b55-b43055b4ab80\"\r\n    },\r\n    \"characters\": [\r\n        {\r\n            \"picture\": \"/usr/tmp/img4.jpg\",\r\n            \"name\": \"Pluto\",\r\n            \"age\": \"30\",\r\n            \"weight\": \"20\",\r\n            \"story\": \"perro\"\r\n        },\r\n        {\r\n            \"picture\": \"/usr/tmp/img5.jpg\",\r\n            \"name\": \"Goofy\",\r\n            \"age\": \"40\",\r\n            \"weight\": \"25\",\r\n            \"story\": \"hgfghfj\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"picture\": \"/usr/tmp/img9.jpg\",\r\n    \"title\": \"Timon & Pumba\",\r\n    \"release\": \"15/12/1998\",\r\n    \"rating\": \"4\",\r\n    \"genre\": {\r\n        \"id\": \"30b29434-1b0c-442b-a23b-7b467ccf308a\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,9 +193,15 @@
 			"name": "CharacterById",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MzcwOTg3LCJpYXQiOjE2NDYzMzQ5ODd9.I7YdNUcyuE8I94JMiXky4v4EgJczwV1ODuBNwPM1FVU",
+						"type": "default"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/characters/7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d",
+					"raw": "http://localhost:8080/characters/16bbd0c5-d46b-45f6-aa15-6fea99cab580",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -185,7 +209,7 @@
 					"port": "8080",
 					"path": [
 						"characters",
-						"7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d"
+						"16bbd0c5-d46b-45f6-aa15-6fea99cab580"
 					]
 				}
 			},
@@ -224,12 +248,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDMwNjM2LCJpYXQiOjE2NDYzOTQ2MzZ9.E6CKcHWo2o4y1_kbzdmzUpSlJQuhLe_4HTpUQ42An-k",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/characters?age=10&weight=5",
+					"raw": "http://localhost:8080/characters",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -246,11 +270,13 @@
 						},
 						{
 							"key": "age",
-							"value": "10"
+							"value": "10",
+							"disabled": true
 						},
 						{
 							"key": "weight",
-							"value": "5"
+							"value": "5",
+							"disabled": true
 						},
 						{
 							"key": "films",
@@ -269,12 +295,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDU4NTY0LCJpYXQiOjE2NDY0MjI1NjR9.jqA4ob85CUbAHmU-lwcFBEAI40CZHEGSNQj8WqRPUV8",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/movies",
+					"raw": "http://localhost:8080/movies?genreId=4189e114-994f-4e31-9b55-b43055b4ab80&order=desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -282,6 +308,21 @@
 					"port": "8080",
 					"path": [
 						"movies"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "genreId",
+							"value": "4189e114-994f-4e31-9b55-b43055b4ab80"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						}
 					]
 				}
 			},
@@ -294,13 +335,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2MTExMjU2LCJpYXQiOjE2NDYwNzUyNTZ9.PhbXtCyTXV0EwCM8OEqJ_bGaqPbwFRbdz5qgsuiZyNY",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDMwNjM2LCJpYXQiOjE2NDYzOTQ2MzZ9.E6CKcHWo2o4y1_kbzdmzUpSlJQuhLe_4HTpUQ42An-k",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n            \"picture\": \"/usr/tmp/img6.jpg\",\r\n            \"name\": \"Mufasa\",\r\n            \"age\": \"20\",\r\n            \"weight\": \"25\",\r\n            \"story\": \"Simba's father\"\r\n        }",
+					"raw": "{\r\n            \"picture\": \"/usr/tmp/img8.jpg\",\r\n            \"name\": \"Scar\",\r\n            \"age\": \"22\",\r\n            \"weight\": \"25\",\r\n            \"story\": \"Mufasa brother\"\r\n        }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -308,7 +349,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/characters/6362de56-f211-4501-8a1e-e9f8dfb581f2",
+					"raw": "http://localhost:8080/characters/cd4469a6-fd94-4855-8627-3cddcb97ff1d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -316,7 +357,89 @@
 					"port": "8080",
 					"path": [
 						"characters",
-						"6362de56-f211-4501-8a1e-e9f8dfb581f2"
+						"cd4469a6-fd94-4855-8627-3cddcb97ff1d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CharacterRemove",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDMwNjM2LCJpYXQiOjE2NDYzOTQ2MzZ9.E6CKcHWo2o4y1_kbzdmzUpSlJQuhLe_4HTpUQ42An-k",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/characters/7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"7c4e3c5b-f16c-44b8-bb47-2a0d02f0511d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilmAddCharacter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDU4NTY0LCJpYXQiOjE2NDY0MjI1NjR9.jqA4ob85CUbAHmU-lwcFBEAI40CZHEGSNQj8WqRPUV8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/movies/93f1e584-4dab-4bae-8f2e-3eae8b7c41f4/characters/16bbd0c5-d46b-45f6-aa15-6fea99cab580",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"93f1e584-4dab-4bae-8f2e-3eae8b7c41f4",
+						"characters",
+						"16bbd0c5-d46b-45f6-aa15-6fea99cab580"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilmRemoveCharacter",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlc3RlYmFuLnJpZ2F0dG9AZ21haWwuY29tIiwiZXhwIjoxNjQ2NDU4NTY0LCJpYXQiOjE2NDY0MjI1NjR9.jqA4ob85CUbAHmU-lwcFBEAI40CZHEGSNQj8WqRPUV8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/movies/93f1e584-4dab-4bae-8f2e-3eae8b7c41f4/characters/ac772635-c493-437d-a417-919345b533a0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"93f1e584-4dab-4bae-8f2e-3eae8b7c41f4",
+						"characters",
+						"ac772635-c493-437d-a417-919345b533a0"
 					]
 				}
 			},

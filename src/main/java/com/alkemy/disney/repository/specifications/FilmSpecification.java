@@ -2,10 +2,14 @@ package com.alkemy.disney.repository.specifications;
 
 import com.alkemy.disney.dto.FilmFiltersDTO;
 import com.alkemy.disney.entity.FilmEntity;
+import com.alkemy.disney.entity.GenreEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +32,9 @@ public class FilmSpecification {
             }
 
             if (filtersDTO.getGenreId() != null) {
-                predicates.add(
-                        criteriaBuilder.equal(
-                                (root.get("genreId")),
-                                filtersDTO.getGenreId()
-                        )
-                );
+                Join<FilmEntity, GenreEntity> join = root.join("genre", JoinType.INNER);
+                Expression<String> genreId = join.get("id");
+                predicates.add(genreId.in(filtersDTO.getGenreId()));
             }
 
             query.distinct(true);

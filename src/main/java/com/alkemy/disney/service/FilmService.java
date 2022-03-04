@@ -21,4 +21,8 @@ public interface FilmService {
 
     void delete(String id);
 
+    FilmDTO addCharacter(String filmId, String characterId);
+
+    FilmDTO removeCharacter(String filmId, String characterId);
+
 }

@@ -43,7 +43,9 @@ public class FilmMapper {
         GenreEntity genre = new GenreEntity();
         genre.setId(dto.getGenre().getId());
         entity.setGenre(genre);
-        entity.setCharacters(characterMapper.characterDTOList2EntityList(dto.getCharacters()));
+        if (dto.getCharacters() != null) {
+            entity.setCharacters(characterMapper.characterDTOList2EntityList(dto.getCharacters()));
+        }
         return entity;
     }
 

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("genres")
 public class GenreController {
@@ -21,13 +23,13 @@ public class GenreController {
     }
 
     @PostMapping
-    public ResponseEntity<GenreDTO> save(@RequestBody GenreDTO genre) {
+    public ResponseEntity<GenreDTO> save(@Valid @RequestBody GenreDTO genre) {
         GenreDTO genreSaved = genreService.save(genre);
         return ResponseEntity.status(HttpStatus.CREATED).body(genreSaved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GenreDTO> update(@PathVariable String id, @RequestBody GenreDTO genre) {
+    public ResponseEntity<GenreDTO> update(@PathVariable String id, @Valid @RequestBody GenreDTO genre) {
         GenreDTO genreUpdated = genreService.update(id, genre);
         return ResponseEntity.ok().body(genreUpdated);
     }

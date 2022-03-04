@@ -4,6 +4,8 @@ import com.alkemy.disney.dto.CharacterBasicDTO;
 import com.alkemy.disney.dto.CharacterDTO;
 import com.alkemy.disney.dto.FilmDTO;
 import com.alkemy.disney.entity.CharacterEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.List;
 @Component
 public class CharacterMapper {
 
+    @Autowired
+    @Lazy
     private FilmMapper filmMapper;
 
     public List<CharacterBasicDTO> characterEntityList2BasicDTOList(List<CharacterEntity> entities) {
